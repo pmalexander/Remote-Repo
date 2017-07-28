@@ -51,6 +51,16 @@ def main():
     elif command == "get":
         snippet = get(**arguments)
         print("Retrieved snippet: {!r}".format(snippet))
+        
+    # Code without argument unpacking
+    put(name="list", snippet="A sequence of things - created using []")
+
+    # Identical code which uses argument unpacking
+    arguments = {
+        "name": "list",
+        "snippet": "A sequence of things - created using []"
+    }
+    put(**arguments)
 
 if __name__ == "__main__":
     main()
