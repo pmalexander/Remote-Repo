@@ -1,7 +1,5 @@
 import logging
 import argparse
-parser = argparse.ArgumentParser()
-parser.parse_args()
 
 # Set the log output file, and the log level
 logging.basicConfig(filename="snippets.log", level=logging.DEBUG)
@@ -34,6 +32,8 @@ def main():
     # Subparser for the put command
     logging.debug("Constructing put subparser")
     put_parser = subparsers.add_parser("put", help="Store a snippet")
+    put_parser.add_argument("name", help="Name of the snippet")
+    put_parser.add_argument("snippet", help="Snippet text")
     
     arguments = parser.parse_args()
 
