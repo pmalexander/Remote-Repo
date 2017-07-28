@@ -20,7 +20,7 @@ def get(name):
 
     Returns the snippet."""
     logging.error("FIXME: Unimplemented - get({!r})".format(name))
-    return None
+    return ""
 
 def main():
     """Main function"""
