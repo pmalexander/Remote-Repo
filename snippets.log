@@ -86,3 +86,6 @@ DEBUG:root:Constructs the get subparser
 INFO:root:Constructing parser
 DEBUG:root:Constructing put subparser
 DEBUG:root:Constructs the get subparser
+INFO:root:Constructing parser
+DEBUG:root:Constructing put subparser
+DEBUG:root:Constructs the get subparser

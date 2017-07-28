@@ -37,7 +37,7 @@ def main():
     
     # Subparser for the get command
     logging.debug("Constructs the get subparser")
-    get_subparser = subparsers.ad_parser("get", help="Retrieves a snippet")
+    get_subparser = subparsers.add_parser("get", help="Retrieves a snippet")
     get_subparser.add_argument("name", help="Name of the snippet")
     
     arguments = parser.parse_args()
