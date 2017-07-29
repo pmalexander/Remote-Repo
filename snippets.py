@@ -26,7 +26,14 @@ def get(name):
     If there is no such snippet, return '404: Snippet Not Found'.
 
     Returns the snippet."""
-    logging.error("FIXME: Unimplemented - get({!r})".format(name))
+    logging.info("Retrieving snippet {!r}: {!r}".format(name, snippet))
+    select keyword, message from snippets where keyword='insert';
+    cursor = cursor.fetchone()
+    command = "insert into snippets values (%s, %s)"
+    cursor.execute(command, (name, snippet))
+    connection.commit()
+    logging.debug("Snippet stored successfully.")
+    return name, snippet
     return ""
 
 def main():
