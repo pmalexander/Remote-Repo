@@ -27,12 +27,12 @@ def get(name):
 
     Returns the snippet."""
     logging.info("Retrieving snippet {!r}: {!r}".format(name, snippet))
-    select keyword, message from snippets where keyword='insert';
+    select keyword, message from snippets where keyword='add';
     cursor = cursor.fetchone()
     command = "insert into snippets values (%s, %s)"
     cursor.execute(command, (name, snippet))
     connection.commit()
-    logging.debug("Snippet stored successfully.")
+    logging.debug("Snippet retrieved successfully.")
     return name, snippet
     return ""
 
