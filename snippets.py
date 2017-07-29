@@ -4,6 +4,8 @@ import psycopg2
 
 # Set the log output file, and the log level
 logging.basicConfig(filename="snippets.log", level=logging.DEBUG)
+
+# Connects to the PostgreSQL database
 logging.debug("Connecting to PostgreSQL")
 connection = psycopg2.connect(database="snippets")
 logging.debug("Database connection established.")
