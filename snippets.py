@@ -21,20 +21,13 @@ def put(name, snippet):
     return name, snippet
     
 def get(name):
-    """Retrieve the snippet with a given name.
-
-    If there is no such snippet, return '404: Snippet Not Found'.
-
-    Returns the snippet."""
-    logging.info("Retrieving snippet {!r}: {!r}".format(name, snippet))
-    select keyword, message from snippets where keyword='add';
-    cursor = cursor.fetchone()
-    command = "insert into snippets values (%s, %s)"
-    cursor.execute(command, (name, snippet))
+    """Retrieve the snippet with a given name. If there is no such snippet, return '404: Snippet Not Found'. Returns the snippet."""
+    logging.info("Retrieving snippet {!r}".format(name,))
+    cursor = connection.cursor()
+    cursor.execute(name,)
+    fetch_row = cursor.fetchone()
     connection.commit()
-    logging.debug("Snippet retrieved successfully.")
-    return name, snippet
-    return ""
+    return fetch_row[0]
 
 def main():
     """Main function"""
