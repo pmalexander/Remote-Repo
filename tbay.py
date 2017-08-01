@@ -20,4 +20,3 @@ class Item(Base):
     description = Column(String)
     start_time = Column(DateTime, default=datetime.utcnow)
 
-Base.metadata.create_all(engine)
