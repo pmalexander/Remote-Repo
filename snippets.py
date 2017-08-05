@@ -26,13 +26,14 @@ def put(name, snippet):
     logging.debug("Snippet stored successfully.")
     return name, snippet
     
-def get(name, snippet):
+def get(name,):
     """Retrieve the snippet with a given name. If there is no such snippet, return '404: Snippet Not Found'. Returns the snippet."""
-    logging.info("Retrieving snippet {!r}: {!r}".format(name, snippet))
+    logging.info("Retrieving snippet {!r}".format(name,))
     with connection, connection.cursor() as cursor:
         cursor.execute("select message from snippets where keyword=%s", (name,))
         fetch_row = cursor.fetchone()
-    if not fetch_row: # No snippet was found with that name.
+    if not fetch_row: 
+        # No snippet was found with that name.
         return "404: Snippet Not Found"
     return fetch_row[0]
 
@@ -64,7 +65,7 @@ def main():
         print("Stored {!r} as {!r}".format(snippet, name))
     elif command == "get":
         snippet = get(**arguments)
-        print("Retrieved snippet: {!r}".format(snippet))
+        print("Retrieved snippet: {!r}".format(snippet,))
         
     # Code without argument unpacking
     put(name="list", snippet="A sequence of things - created using []")
