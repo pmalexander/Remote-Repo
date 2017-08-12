@@ -26,6 +26,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String, nullable=False)
     password = Column(String, nullable=False)
+    items = relationship("Item", uselist=False, backref="User")
     
 class Bid(Base):
     __tablename__ = "bid"
