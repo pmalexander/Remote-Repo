@@ -9,7 +9,8 @@ Base = declarative_base()
 
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime, Float
+from sqlalchemy import Column, Integer, String, DateTime, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
 class Item(Base):
     __tablename__ = "items"
