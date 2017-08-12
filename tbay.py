@@ -82,7 +82,7 @@ session.commit()
 wheelchair = Item()
 wheelchair.id = 5
 wheelchair.name = "Wheelchair"
-wheelchair.description = "Antiquated"
+wheelchair.description = "Old"
 
 session.add(wheelchair)
 session.commit
