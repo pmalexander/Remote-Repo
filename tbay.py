@@ -27,6 +27,14 @@ class User(Base):
     username = Column(String, nullable=False)
     password = Column(String, nullable=False)
     
+class Bid(Base):
+    __tablename__ = "bid"
+    
+    id = Column(Integer, primary_key=True)
+    price = Column(Float, nullable=False)
+
+Base.metadata.create_all(engine)
+
 jack = User()
 jack.username = "jbaker"
 jack.password = "chainsaw"
@@ -42,7 +50,7 @@ session.add(marguerite)
 session.commit()
 
 luke = User()
-luke.usernmae = "lbaker"
+luke.username = "lbaker"
 luke.password = "cage"
 
 session.add(luke)
@@ -87,13 +95,5 @@ wheelchair.description = "Old"
 
 session.add(wheelchair)
 session.commit
-
-class Bid(Base):
-    __tablename__ = "bid"
-    
-    id = Column(Integer, primary_key=True)
-    price = Column(Float, nullable=False)
-
-Base.metadata.create_all(engine)
 
 session.query(User).all()
