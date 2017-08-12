@@ -40,23 +40,52 @@ marguerite.password = "bugs"
 session.add(marguerite)
 session.commit()
 
-mansion = Item()
-mansion.id = 1
-mansion.name = "Residence"
-mansion.description = "Creepy"
-mansion.start_time = DateTime 
+luke = User()
+luke.usernmae = "lbaker"
+luke.password = "cage"
 
-session.add(mansion)
+session.add(luke)
 session.commit()
 
-basement = Item()
-basement.id = 2
-basement.name = "Storage"
-basement.description = "Scary"
-basement.start_time = DateTime
-
-session.add(basement)
+axe = Item()
+axe.id = 1
+axe.name = "Axe"
+axe.description = "Huge"
+ 
+session.add(axe)
 session.commit()
+
+lantern = Item()
+lantern.id = 2
+lantern.name = "Lantern"
+lantern.description = "Bright"
+
+session.add(lantern)
+session.commit()
+
+remote = Item()
+remote.id = 3
+remote.name = "Remote"
+remote.description = "Multipurpose"
+
+session.add(remote)
+session.commit()
+
+rope = Item()
+rope.id = 4
+rope.name = "Rope"
+remote.description = "Lengthy"
+
+session.add(rope)
+session.commit()
+
+wheelchair = Item()
+wheelchair.id = 5
+wheelchair.name = "Wheelchair"
+wheelchair.description = "Antiquated"
+
+session.add(wheelchair)
+session.commit
 
 class Bid(Base):
     __tablename__ = "bid"
