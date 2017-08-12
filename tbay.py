@@ -36,6 +36,7 @@ class Bid(Base):
 Base.metadata.create_all(engine)
 
 jack = User()
+jack.id = 1
 jack.username = "jbaker"
 jack.password = "chainsaw"
 
@@ -43,6 +44,7 @@ session.add(jack)
 session.commit()
 
 marguerite = User()
+marguerite.id = 2
 marguerite.username = "mbaker"
 marguerite.password = "bugs"
 
@@ -50,6 +52,7 @@ session.add(marguerite)
 session.commit()
 
 luke = User()
+luke.id = 3
 luke.username = "lbaker"
 luke.password = "cage"
 
@@ -94,6 +97,32 @@ wheelchair.name = "Wheelchair"
 wheelchair.description = "Old"
 
 session.add(wheelchair)
-session.commit
+session.commit()
 
-session.query(User).all()
+baseball = Item()
+baseball.id = 6
+baseball.name = "Baseball"
+baseball.description = "Round"
+
+session.add(baseball)
+session.commit()
+
+# Returns a list of all of the user objects
+# Note that user objects won't display very prettily by default -
+# you'll see their type (User) and their internal identifiers.
+session.query(User).all() # Returns a list of all of the user objects
+
+# Returns the first user
+session.query(User).first()
+
+# Finds the user with the primary key equal to 1
+session.query(User).get(1)
+
+# Returns a list of all of the usernames in ascending order
+session.query(User.username).order_by(User.username).all()
+
+# Returns the description of all of the basesballs
+session.query(Item.description).filter(Item.name == "baseball").all()
+
+# Return the item id and description for all baseballs which were created in the past.  Remember to import the datetime object: from datetime import datetime
+session.query(Item.id, Item.description).filter(Item.name == "baseball", Item.start_time < datetime.utcnow()).all()
