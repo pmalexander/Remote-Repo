@@ -86,7 +86,7 @@ session.commit()
 rope = Item()
 rope.id = 4
 rope.name = "Rope"
-remote.description = "Lengthy"
+rope.description = "Lengthy"
 
 session.add(rope)
 session.commit()
