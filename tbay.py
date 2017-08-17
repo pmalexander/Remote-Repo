@@ -20,6 +20,9 @@ class Item(Base):
     description = Column(String)
     start_time = Column(DateTime, default=datetime.utcnow)
     owner_id = Column(Integer, ForeignKey(user.id, nullable=False)
+    
+    user_bid = relationship("Bid", backref="bidfor_item")
+    
 
 class User(Base):
     __tablename__ = "users"
