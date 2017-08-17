@@ -9,7 +9,7 @@ Base = declarative_base()
 
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Float, ForeignKey, desc
 from sqlalchemy.orm import relationship
 
 class Item(Base):
@@ -29,24 +29,17 @@ class User(Base):
     password = Column(String, nullable=False)
     bid = relationship("Bid", uselist=True, backref="User")
     
-class Auction(Base):
-    __tablename__ = "auction"
-    
-    id = Column (Integer, primary_key=True)
-    price = Column(Float, nullable=False)
-
 class Bid(Base):
-    __tablename__ = "bid"
+    __tablename__ = "bids"
     
     id = Column(Integer, primary_key=True)
     price = Column(Float, nullable=False)
-    
+    item_id = Column(Integer, ForeignKey('Item.id'), nullable=False)
     user_id = Column(Integer, ForeignKey('User.id'), nullable=False)
-
+    
 Base.metadata.create_all(engine)
 
 jack = User()
-jack.id = 1
 jack.username = "jbaker"
 jack.password = "chainsaw"
 
@@ -54,7 +47,6 @@ session.add(jack)
 session.commit()
 
 marguerite = User()
-marguerite.id = 2
 marguerite.username = "mbaker"
 marguerite.password = "bugs"
 
@@ -62,7 +54,6 @@ session.add(marguerite)
 session.commit()
 
 luke = User()
-luke.id = 3
 luke.username = "lbaker"
 luke.password = "cage"
 
@@ -70,7 +61,6 @@ session.add(luke)
 session.commit()
 
 axe = Item()
-axe.id = 1
 axe.name = "Axe"
 axe.description = "Huge"
  
@@ -78,7 +68,6 @@ session.add(axe)
 session.commit()
 
 lantern = Item()
-lantern.id = 2
 lantern.name = "Lantern"
 lantern.description = "Bright"
 
@@ -86,7 +75,6 @@ session.add(lantern)
 session.commit()
 
 remote = Item()
-remote.id = 3
 remote.name = "Remote"
 remote.description = "Multipurpose"
 
@@ -94,7 +82,6 @@ session.add(remote)
 session.commit()
 
 rope = Item()
-rope.id = 4
 rope.name = "Rope"
 rope.description = "Lengthy"
 
@@ -102,7 +89,6 @@ session.add(rope)
 session.commit()
 
 wheelchair = Item()
-wheelchair.id = 5
 wheelchair.name = "Wheelchair"
 wheelchair.description = "Old"
 
@@ -110,12 +96,22 @@ session.add(wheelchair)
 session.commit()
 
 baseball = Item()
-baseball.id = 6
 baseball.name = "Baseball"
 baseball.description = "Round"
 
 session.add(baseball)
 session.commit()
+
+jack = session.query(User).filter(User.username == 'Jack').first()
+marguerite = session.query(User).filter(User.username == 'Marguerite').first()
+luke =session.query(User).filter(User.username == 'Luke').first()
+
+axe = session.query(Item).filter(Item.name == 'Axe').first()
+lantern = session.query(Item).filter(Item.name == 'Lantern').first()
+remote = session.query(Item).filter(Item.name == 'Remote').first()
+rope = session.query(Item).filter(Item.name == 'Remote').first()
+wheelchair = session.query(Item).filter(Item.name == 'Wheelchair').first()
+baseball = session.query(Item).filter(Item.name == 'Baseball').first()
 
 # Returns a list of all of the user objects
 # Note that user objects won't display very prettily by default -
@@ -136,3 +132,5 @@ session.query(Item.description).filter(Item.name == "baseball").all()
 
 # Return the item id and description for all baseballs which were created in the past.  Remember to import the datetime object: from datetime import datetime
 session.query(Item.id, Item.description).filter(Item.name == "baseball", Item.start_time < datetime.utcnow()).all()
+test = session.query(Item).filter(Item.name == "baseball").first()
+session.query(Bid).filter(Item.id == "baseball").order_by(desc(Bid.price))
